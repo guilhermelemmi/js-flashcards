@@ -44,7 +44,9 @@ class Game extends Component {
         card={this.state.cards[this.state.cardIndex]}
         cardIndex={this.state.cardIndex}
         cardsTotal={this.state.cards.length}
-        onSkip={this.handleSkipQuestion}
+        onSkipQuestion={this.handleSkipQuestion}
+        onNextQuestion={this.handleSkipQuestion}
+        onRaiseFlag={()=>{}}
       />
     );
   }

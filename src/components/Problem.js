@@ -1,12 +1,21 @@
 import React from 'react';
-import Card from './Card';
+import FlashCard from './FlashCard';
 
 const Problem = (props) => {
+  const {
+    card,
+    onSkipQuestion,
+    onNextQuestion,
+    onRaiseFlag
+  } = props;
+
   return (
     <div className="Problem">
-      <Card
-        card={props.card}
-        onSkip={props.onSkip}
+      <FlashCard
+        card={card}
+        onSkipQuestion={onSkipQuestion}
+        onNextQuestion={onNextQuestion}
+        onRaiseFlag={onRaiseFlag}
       />
       <div className="Game-Index">
         Card {props.cardIndex + 1} / {props.cardsTotal}
