@@ -22,7 +22,7 @@ class FlashCard extends Component {
 
   renderQuestion = () => {
     return (
-      <p>
+      <p>Q:
         <Markdown markup={this.props.card.question} />
       </p>
     );
@@ -30,7 +30,7 @@ class FlashCard extends Component {
 
   renderAnswer = () => {
     return (
-      <p>
+      <p>A:
         <Markdown markup={this.props.card.answer} />
       </p>
     );
@@ -48,32 +48,56 @@ class FlashCard extends Component {
   }
 
   toggleAnswer = () => {
-    this.setState({ cardStatus: CARD_STATUS.ANSWER });
-  }
-
-  renderActions = () => {
-    const {
-      onSkipQuestion,
-      onNextQuestion,
-      onRaiseFlag
-    } = this.props;
-    
-    return (
-      <>
-        <Button onClick={this.toggleAnswer}>I don't know</Button>
-        <Button type="primary" onClick={onSkipQuestion}>I know</Button>
-      </>
-    )
+    switch (this.state.cardStatus) {
+      case CARD_STATUS.QUESTION:
+        this.setState({ cardStatus: CARD_STATUS.ANSWER });
+        break;
+      case CARD_STATUS.ANSWER:
+        this.setState({ cardStatus: CARD_STATUS.QUESTION });
+        break;
+    }
   }
 
   render() {
+    const {
+      onWrongAnswer,
+      onRightAnswer
+    } = this.props;
+
     return (
       <div className="Card">
         <Card>
           {this.renderContent()}
         </Card>
         <div className="FlashCard-Actions">
-          {this.renderActions()}
+          <Button
+            type="primary"
+            onClick={onWrongAnswer}
+            shape="circle"
+            icon='dislike'
+            alt="I don't know"
+            title="I don't know"
+            size="large"
+            style={{marginRight: 10, backgroundColor: '#ff4d4f' }}
+          />
+          <Button
+            onClick={this.toggleAnswer}
+            shape="circle"
+            icon='retweet'
+            alt="Flip"
+            title="Flip"
+            size="large"
+          />
+          <Button
+            type="primary"
+            onClick={onRightAnswer}
+            shape="circle"
+            icon='like'
+            alt="I know"
+            title="I know"
+            size="large"
+            style={{marginLeft: 10}}
+          />
         </div>
       </div>
     );

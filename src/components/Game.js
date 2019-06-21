@@ -34,6 +34,18 @@ class Game extends Component {
     }
   }
 
+  handlePreviousButton = () => {
+    if (this.state.cardIndex > 0) {
+      this.setState({ cardIndex: this.state.cardIndex - 1 });
+    }
+  }
+
+  handleNextButton = () => {
+    if (this.state.cardIndex < this.state.cards.length - 1) {
+      this.setState({ cardIndex: this.state.cardIndex + 1 });
+    }
+  }
+
   renderIntro() {
     return <Intro onPlay={this.playGame} />;
   }
@@ -44,9 +56,10 @@ class Game extends Component {
         card={this.state.cards[this.state.cardIndex]}
         cardIndex={this.state.cardIndex}
         cardsTotal={this.state.cards.length}
-        onSkipQuestion={this.handleSkipQuestion}
-        onNextQuestion={this.handleSkipQuestion}
-        onRaiseFlag={()=>{}}
+        onRightAnswer={this.handleSkipQuestion}
+        onWrongAnswer={this.handleSkipQuestion}
+        onPreviousButton={this.handlePreviousButton}
+        onNextButton={this.handleNextButton}
       />
     );
   }
