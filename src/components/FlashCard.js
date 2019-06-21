@@ -57,25 +57,13 @@ class FlashCard extends Component {
       onNextQuestion,
       onRaiseFlag
     } = this.props;
-
-    switch (this.state.cardStatus) {
-      case CARD_STATUS.QUESTION:
-        return (
-          <>
-            <Button onClick={this.toggleAnswer}>Check Answer</Button>
-            <Button type="primary" onClick={onSkipQuestion}>Skip</Button>
-          </>
-        )
-      case CARD_STATUS.ANSWER:
-        return (
-          <>
-            <Button onClick={onRaiseFlag}>Needs Study</Button>
-            <Button type="primary" onClick={onNextQuestion}>Next</Button>
-          </>
-        );
-      default:
-        return null;
-    }
+    
+    return (
+      <>
+        <Button onClick={this.toggleAnswer}>I don't know</Button>
+        <Button type="primary" onClick={onSkipQuestion}>I know</Button>
+      </>
+    )
   }
 
   render() {
