@@ -15,6 +15,7 @@ class Game extends Component {
   state = {
     gameStatus: GAME_STATUS.INTRO,
     cards: [],
+    answers: {},
     cardIndex: 0
   }
 
@@ -22,6 +23,7 @@ class Game extends Component {
     this.setState({ 
       gameStatus: GAME_STATUS.PLAYING,
       cards: Utils.getCards(10),
+      answers: new Array(10),
       cardIndex: 0
     });
   }
@@ -32,6 +34,14 @@ class Game extends Component {
     } else {
       this.setState({ gameStatus: GAME_STATUS.SUMMARY });
     }
+  }
+
+  handleNegativeAnswer = () => {
+    this.setState({answers: {...this.state.answers, [this.state.cardIndex]: false}});
+  }
+
+  handlePositiveAnswer = () => {
+    this.setState({answers: {...this.state.answers, [this.state.cardIndex]: true}});
   }
 
   handlePreviousButton = () => {
@@ -54,10 +64,11 @@ class Game extends Component {
     return (
       <Problem
         card={this.state.cards[this.state.cardIndex]}
+        answer={this.state.answers[this.state.cardIndex]}
         cardIndex={this.state.cardIndex}
         cardsTotal={this.state.cards.length}
-        onRightAnswer={this.handleSkipQuestion}
-        onWrongAnswer={this.handleSkipQuestion}
+        onPositiveAnswer={this.handlePositiveAnswer}
+        onNegativeAnswer={this.handleNegativeAnswer}
         onPreviousButton={this.handlePreviousButton}
         onNextButton={this.handleNextButton}
       />
