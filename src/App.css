@@ -13,6 +13,11 @@
   cursor: pointer;
 }
 
+.Card .ant-card {
+  height: 350px;
+  overflow-x: auto;
+}
+
 .FlashCard-Actions {
   margin-top: 20px;
 }

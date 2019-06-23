@@ -20,15 +20,22 @@ class Game extends Component {
   }
 
   playGame = () => {
+    const cards = Utils.getCards(10);
+
+    const answers = {};
+    cards.forEach((c, i) => {
+      answers[i] = null;
+    });
+  
     this.setState({ 
       gameStatus: GAME_STATUS.PLAYING,
-      cards: Utils.getCards(10),
-      answers: new Array(10),
+      cards,
+      answers,
       cardIndex: 0
     });
   }
 
-  handleSkipQuestion = () => {
+  skipQuestion = () => {
     if (this.state.cardIndex < this.state.cards.length - 1) {
       this.setState({ cardIndex: this.state.cardIndex + 1 });
     } else {
@@ -51,9 +58,7 @@ class Game extends Component {
   }
 
   handleNextButton = () => {
-    if (this.state.cardIndex < this.state.cards.length - 1) {
-      this.setState({ cardIndex: this.state.cardIndex + 1 });
-    }
+    this.skipQuestion();
   }
 
   renderIntro() {
@@ -76,7 +81,12 @@ class Game extends Component {
   }
 
   renderSummary = () => {
-    return <Summary onTryAgain={this.playGame} />;
+    return (
+      <Summary
+        onTryAgain={this.playGame}
+        answers={this.state.answers}
+      />
+    )
   }
 
   renderContent() {
