@@ -22,6 +22,11 @@
   margin-top: 20px;
 }
 
+.tags {
+  display: flex;
+  justify-content: flex-end;
+}
+
 #btnNegativeAnswer.btnSelected:after,
 #btnPositiveAnswer.btnSelected:after {
   content: "";
