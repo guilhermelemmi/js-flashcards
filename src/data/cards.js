@@ -81,7 +81,7 @@ export default {
       answer: "It means that we don't use type names in declarations. Types are inferred by JavaScript. Also, over the course of a run-time a variable's type may change."
     },
     {
-      tags: ['types'],
+      tags: ['syntax'],
       question: "### What are some of the differences between subscript notation and dot notation?",
       answer: "Subscript notation allows the use of keys with spaces, dot notation does not. Because of an error in JS, reserved words can be used in subscripts but not with dot notation."
     },
