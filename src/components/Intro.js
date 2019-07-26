@@ -1,13 +1,17 @@
 import React from 'react';
-import { Button } from 'antd';
+import { Card, Button } from 'antd';
 
 const Intro = (props) => {
   return (
     <div className="Intro">
-      <p>
-        This is a Flashcard Game for people studying Javascript
-      </p>
-      <Button type="primary" onClick={props.onPlay}>Play</Button>
+      <div className="Card">
+        <Card>
+          <p>
+            This is a Flashcard Game for people studying Javascript
+          </p>
+          <Button type="primary" onClick={props.onPlay}>Play</Button>
+        </Card>
+      </div>
     </div>
   );
 }
